@@ -7,17 +7,24 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.apache.log4j.BasicConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.io.File;
 
 public class Main extends Application {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -83,15 +90,16 @@ public class Main extends Application {
   }
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
-    WritableImage image = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
-    canvas.snapshot(null, image);
+    WritableImage image = changeOutputImageColor(canvas);
 
     // exported to build/jfx/app/
     File file = new File("export.png");
 
     try {
       ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+      LOGGER.debug("Image is successfully exported to {}", file.getAbsolutePath());
     } catch (Exception e) {
+      LOGGER.debug("Fail to export the image");
     }
   }
 
@@ -100,7 +108,28 @@ public class Main extends Application {
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
+  private WritableImage changeOutputImageColor(Canvas canvas) {
+    final int width = (int)canvas.getWidth();
+    final int height = (int)canvas.getHeight();
+    WritableImage image = new WritableImage(width, height);
+    canvas.snapshot(null, image);
+
+    PixelWriter pixelWriter = image.getPixelWriter();
+    PixelReader pixelReader = image.getPixelReader();
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        Color color = pixelReader.getColor(x, y);
+        if (color.getRed() != 1.0 && color.getGreen() != 1.0 && color.getBlue() != 1.0) {
+          pixelWriter.setColor(x, y, new Color(0.5, 0.5, 0.5, 1));
+        }
+      }
+    }
+
+    return image;
+  }
+
   public static void main(String[] args) {
+    BasicConfigurator.configure();
     launch(args);
   }
 }
