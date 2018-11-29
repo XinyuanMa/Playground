@@ -1,19 +1,21 @@
 package allen.ma;
 
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.beans.EventHandler;
+import javax.imageio.ImageIO;
+import java.io.File;
 
 public class Main extends Application {
 
@@ -30,14 +32,16 @@ public class Main extends Application {
     canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> onDragged(e, canvas));
     canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> onReleased(e, canvas));
 
-    // 2 buttons in an HBox
+    // buttons
     HBox box = new HBox(3);
-    Button btnExport = new Button("Export");
     Button btnClear = new Button("Clear");
-    btnExport.setOnAction(e -> onBtnExportClicked(e));
+    Button btnExport = new Button("Export");
+    Button btnImport = new Button("Import");
+    btnExport.setOnAction(e -> onBtnExportClicked(e, canvas));
     btnClear.setOnAction(e -> onBtnClearClicked(e, canvas));
     box.getChildren().add(btnClear);
     box.getChildren().add(btnExport);
+    box.getChildren().add(btnImport);
 
     // put HBox and canvas into root and root into stage
     root.getChildren().add(box);
@@ -78,8 +82,17 @@ public class Main extends Application {
     event.consume();
   }
 
-  private void onBtnExportClicked(ActionEvent event) {
+  private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
+    WritableImage image = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
+    canvas.snapshot(null, image);
 
+    // exported to build/jfx/app/
+    File file = new File("export.png");
+
+    try {
+      ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+    } catch (Exception e) {
+    }
   }
 
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {
