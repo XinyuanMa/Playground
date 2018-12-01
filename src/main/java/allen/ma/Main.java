@@ -155,23 +155,6 @@ public class Main extends Application {
     return SwingFXUtils.fromFXImage(image, null);
   }
 
-  private void colorFilter(WritableImage image) {
-    final int width = (int)image.getWidth();
-    final int height = (int)image.getHeight();
-    // pixels are white in background and purple at the place of drawing
-    PixelReader reader = image.getPixelReader();
-    PixelWriter writer = image.getPixelWriter();
-
-    for (int x = 0; x < width; x++) {
-      for (int y = 0; y < height; y++) {
-        Color color = reader.getColor(x, y);
-        if (color.getRed() != 1 && color.getBlue() != 1 && color.getGreen() != 1) {
-          writer.setColor(x, y, new Color(1, 0, 0, 1));
-        }
-      }
-    }
-  }
-
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
