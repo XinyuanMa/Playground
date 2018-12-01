@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
@@ -22,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.ByteBuffer;
@@ -39,7 +41,7 @@ public class Main extends Application {
     VBox root = new VBox(3);
 
     // canvas
-    Canvas canvas = new Canvas(800, 600);
+    Canvas canvas = new Canvas(1600, 900);
     canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> onPressed(e, canvas));
     canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> onDragged(e, canvas));
     canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> onReleased(e, canvas));
@@ -101,19 +103,72 @@ public class Main extends Application {
 
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
+    BufferedImage bBimg = generateBinaryBimg(canvas);
+    BufferedImage bimg = generateBimg(canvas);
+
+    // exported to build/jfx/app/
+    File fileOfBinary = new File("export.bmp");
+    File fileOfRGB = new File("export.png");
+
+    try {
+      boolean result1 = ImageIO.write(bBimg, "bmp", fileOfBinary);
+      LOGGER.debug("result is {}", result1);
+      LOGGER.debug("{}", bBimg.getType());
+      LOGGER.debug("Image is successfully exported to {}", fileOfBinary.getAbsolutePath());
+
+      boolean result2 = ImageIO.write(bimg, "png", fileOfRGB);
+      LOGGER.debug("result is {}", result2);
+      LOGGER.debug("{}", bimg.getType());
+      LOGGER.debug("Image is successfully exported to {}", fileOfRGB.getAbsolutePath());
+    } catch (Exception e) {
+      LOGGER.debug("Fail to export the image");
+    }
+  }
+
+  private BufferedImage generateBinaryBimg(Canvas canvas) {
+    final int width = (int)canvas.getWidth();
+    final int height = (int)canvas.getHeight();
+    WritableImage image = new WritableImage(width, height);
+    canvas.snapshot(null, image);
+    PixelReader reader = image.getPixelReader();
+
+    BufferedImage bimg = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
+
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        Color color = reader.getColor(x, y);
+        if (color.getRed() != 1 || color.getGreen() != 1 || color.getBlue() != 1) {
+          bimg.setRGB(x, y, java.awt.Color.WHITE.getRGB());
+        }
+      }
+    }
+
+    return bimg;
+  }
+
+  private BufferedImage generateBimg(Canvas canvas) {
     final int width = (int)canvas.getWidth();
     final int height = (int)canvas.getHeight();
     WritableImage image = new WritableImage(width, height);
     canvas.snapshot(null, image);
 
-    // exported to build/jfx/app/
-    File file = new File("export.png");
+    return SwingFXUtils.fromFXImage(image, null);
+  }
 
-    try {
-      ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-      LOGGER.debug("Image is successfully exported to {}", file.getAbsolutePath());
-    } catch (Exception e) {
-      LOGGER.debug("Fail to export the image");
+  private void colorFilter(WritableImage image) {
+    final int width = (int)image.getWidth();
+    final int height = (int)image.getHeight();
+    // pixels are white in background and purple at the place of drawing
+    PixelReader reader = image.getPixelReader();
+    PixelWriter writer = image.getPixelWriter();
+
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        Color color = reader.getColor(x, y);
+        if (color.getRed() != 1 && color.getBlue() != 1 && color.getGreen() != 1) {
+          writer.setColor(x, y, new Color(1, 0, 0, 1));
+        }
+      }
     }
   }
 
