@@ -2,18 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a18048fc-3f20-45a3-a134-54a13bae6a7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/allen/ma/Picture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/allen/ma/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/allen/ma/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/jfx/app/export.png" beforeDir="false" afterPath="$PROJECT_DIR$/build/jfx/app/export.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/jfx/app/project-jfx.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/jfx/app/project-jfx.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/Allen.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/Allen.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/allen/ma/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/allen/ma/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -85,13 +73,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="33" />
-          <entry key="java" value="4654" />
+          <entry key="java" value="6976" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="33" />
-          <entry key="JAVA" value="4654" />
+          <entry key="JAVA" value="6976" />
         </counts>
       </usages-collector>
     </session>
@@ -101,8 +89,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="160" selection-start-line="160" selection-end-line="160" />
+            <state relative-caret-position="688">
+              <caret line="155" column="3" selection-start-line="155" selection-start-column="3" selection-end-line="155" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -113,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Picture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="285">
               <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -560,7 +548,7 @@
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="-899" />
     <option name="y" value="-1440" />
-    <option name="width" value="1718" />
+    <option name="width" value="3440" />
     <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -677,10 +665,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-899" y="-1440" width="1718" height="1440" extended-state="0" />
+    <frame x="-899" y="-1440" width="3440" height="1440" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49860725" visible="true" weight="0.21897374" />
-      <window_info id="Structure" order="1" sideWeight="0.5013928" side_tool="true" visible="true" weight="0.21897374" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49860725" visible="true" weight="0.10800471" />
+      <window_info id="Structure" order="1" sideWeight="0.5013928" side_tool="true" visible="true" weight="0.10800471" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
@@ -729,19 +718,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Main.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="160" selection-start-line="160" selection-end-line="160" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="342">
+          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Picture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
+        <state relative-caret-position="285">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -749,10 +735,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        <state relative-caret-position="688">
+          <caret line="155" column="3" selection-start-line="155" selection-start-column="3" selection-end-line="155" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
