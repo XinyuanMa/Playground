@@ -27,12 +27,14 @@ public class Main extends Application {
     LoginScene scene = new LoginScene();
     loginScene = new Scene(scene.getRoot(), 300, 275);
     stage.setScene(loginScene);
+    stage.centerOnScreen();
   }
 
   public static void showMainScene() {
     MainSceneController scene = new MainSceneController();
-    mainScene = new Scene(scene.getRoot(), (int)scene.getRoot().getWidth(), (int)scene.getRoot().getHeight());
+    mainScene = new Scene(scene.getRoot(), scene.getWidth(), scene.getHeight());
     stage.setScene(mainScene);
+    stage.centerOnScreen();
   }
 
   public static void main(String[] args) {

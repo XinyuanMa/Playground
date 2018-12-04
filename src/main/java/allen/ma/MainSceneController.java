@@ -6,8 +6,13 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MainSceneController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MainSceneController.class);
+
   @FXML private VBox root;
   @FXML private HBox btnHolderBox;
   @FXML private Canvas canvas;
@@ -20,25 +25,25 @@ public class MainSceneController {
 
   private MainSceneBehaviors mainSceneBehaviors;
 
-  public Integer getWidth() {
-    return width;
-  }
-
-  public Integer getHeight() {
-    return height;
-  }
-
   public MainSceneController() {
     width = Picture.getInstance().getWidth();
     height = Picture.getInstance().getHeight();
     root = new VBox(3);
-    canvas = new Canvas(getWidth(), getHeight());
+    canvas = new Canvas(width, height);
     btnHolderBox = new HBox(3);
     btnClear = new Button("Clear");
     btnExport = new Button("Export");
     btnImport = new Button("Import");
 
     initView();
+  }
+
+  public Integer getWidth() {
+    return width;
+  }
+
+  public Integer getHeight() {
+    return height;
   }
 
   private void initView() {
