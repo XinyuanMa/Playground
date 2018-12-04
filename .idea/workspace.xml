@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a18048fc-3f20-45a3-a134-54a13bae6a7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/allen/ma/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/allen/ma/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/allen/ma/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/allen/ma/MainSceneBehaviors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/allen/ma/MainScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/allen/ma/MainSceneController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/allen/ma/MainScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/allen/ma/MainScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/allen/ma/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/allen/ma/Picture.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -78,13 +76,13 @@
         <counts>
           <entry key="dummy" value="49" />
           <entry key="gradle" value="33" />
-          <entry key="java" value="11725" />
+          <entry key="java" value="12209" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="33" />
-          <entry key="JAVA" value="11725" />
+          <entry key="JAVA" value="12209" />
           <entry key="PLAIN_TEXT" value="49" />
         </counts>
       </usages-collector>
@@ -92,11 +90,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+            <state relative-caret-position="703">
+              <caret line="37" column="3" lean-forward="true" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,17 +102,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/MainScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+            <state relative-caret-position="521">
+              <caret line="130" column="41" selection-start-line="130" selection-start-column="41" selection-end-line="130" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1114#1115#0" expanded="true" />
                 <element signature="e#1136#1137#0" expanded="true" />
                 <element signature="e#1168#1169#0" expanded="true" />
                 <element signature="e#1191#1192#0" expanded="true" />
+                <element signature="e#4264#4265#0" expanded="true" />
+                <element signature="e#4307#4308#0" expanded="true" />
+                <element signature="e#4357#4358#0" expanded="true" />
+                <element signature="e#4400#4401#0" expanded="true" />
+                <element signature="e#4434#4435#0" expanded="true" />
+                <element signature="e#4468#4469#0" expanded="true" />
+                <element signature="e#4577#4578#0" expanded="true" />
+                <element signature="e#4611#4612#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,8 +129,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="40" column="3" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+            <state relative-caret-position="532">
+              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,8 +141,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/LoginScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1178">
-              <caret line="70" column="33" lean-forward="true" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
+            <state relative-caret-position="874">
+              <caret line="48" column="37" lean-forward="true" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,8 +153,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Picture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="35" column="64" lean-forward="true" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
+            <state relative-caret-position="151">
+              <caret line="26" column="39" lean-forward="true" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#882#883#0" expanded="true" />
@@ -599,18 +605,18 @@
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/Behaviors.java" />
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/PropertySingleton.java" />
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/LoginScene.java" />
-        <option value="$PROJECT_DIR$/src/main/java/allen/ma/Picture.java" />
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/MainSceneBehaviors.java" />
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/MainSceneController.java" />
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/allen/ma/Picture.java" />
         <option value="$PROJECT_DIR$/src/main/java/allen/ma/MainScene.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-798" />
-    <option name="y" value="-1321" />
+    <option name="x" value="-856" />
+    <option name="y" value="-1380" />
     <option name="width" value="1718" />
     <option name="height" value="1267" />
   </component>
@@ -728,7 +734,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-798" y="-1321" width="1718" height="1267" extended-state="0" />
+    <frame x="-856" y="-1380" width="1718" height="1267" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4988662" visible="true" weight="0.17541766" />
       <window_info id="Structure" order="1" sideWeight="0.5011338" side_tool="true" visible="true" weight="0.17541766" />
@@ -789,16 +795,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/PropertySingleton.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/MainScene.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/LoginScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1178">
-          <caret line="70" column="33" lean-forward="true" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/MainSceneBehaviors.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1995">
@@ -813,10 +809,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/LoginScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="48" column="37" lean-forward="true" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Picture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="35" column="64" lean-forward="true" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
+        <state relative-caret-position="151">
+          <caret line="26" column="39" lean-forward="true" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#882#883#0" expanded="true" />
@@ -831,10 +847,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Utils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="40" column="3" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+        <state relative-caret-position="703">
+          <caret line="37" column="3" lean-forward="true" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -843,24 +859,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/MainScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        <state relative-caret-position="521">
+          <caret line="130" column="41" selection-start-line="130" selection-start-column="41" selection-end-line="130" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1114#1115#0" expanded="true" />
             <element signature="e#1136#1137#0" expanded="true" />
             <element signature="e#1168#1169#0" expanded="true" />
             <element signature="e#1191#1192#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/allen/ma/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#4264#4265#0" expanded="true" />
+            <element signature="e#4307#4308#0" expanded="true" />
+            <element signature="e#4357#4358#0" expanded="true" />
+            <element signature="e#4400#4401#0" expanded="true" />
+            <element signature="e#4434#4435#0" expanded="true" />
+            <element signature="e#4468#4469#0" expanded="true" />
+            <element signature="e#4577#4578#0" expanded="true" />
+            <element signature="e#4611#4612#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -930,6 +944,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>Gradle: com.github.drapostolos:type-parser:0.5.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

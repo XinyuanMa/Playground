@@ -22,8 +22,7 @@ public class Picture {
 
   private static Picture pictureInstance;
 
-  private Picture() {
-  }
+  private Picture() {}
 
   public static Picture getInstance() {
     if (pictureInstance == null) {

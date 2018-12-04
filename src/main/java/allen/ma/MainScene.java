@@ -1,9 +1,12 @@
 package allen.ma;
 
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -30,6 +33,9 @@ public class MainScene {
   private Integer width;
   private Integer height;
 
+  private LongProperty bmpFileSize = new SimpleLongProperty();
+  private LongProperty pngFileSize = new SimpleLongProperty();
+
   public MainScene() {
     width = Picture.getInstance().getWidth();
     height = Picture.getInstance().getHeight();
@@ -41,7 +47,7 @@ public class MainScene {
     btnImport = new Button("Import");
 
     initView();
-    assignBehaviors();
+    applyBehaviors();
   }
 
   public Integer getWidth() {
@@ -65,7 +71,7 @@ public class MainScene {
     return root;
   }
 
-  private void assignBehaviors() {
+  private void applyBehaviors() {
     // canvas behaviors
     canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> onPressed(e, canvas));
     canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> onDragged(e, canvas));
@@ -118,15 +124,18 @@ public class MainScene {
     File fileOfRGB = new File("export.png");
 
     try {
-      boolean result1 = ImageIO.write(bBimg, "bmp", fileOfBinary);
-      LOGGER.debug("result is {}", result1);
-      LOGGER.debug("{}", bBimg.getType());
-      LOGGER.debug("Image is successfully exported to {}", fileOfBinary.getAbsolutePath());
+      ImageIO.write(bBimg, "bmp", fileOfBinary);
+      ImageIO.write(bimg, "png", fileOfRGB);
 
-      boolean result2 = ImageIO.write(bimg, "png", fileOfRGB);
-      LOGGER.debug("result is {}", result2);
-      LOGGER.debug("{}", bimg.getType());
-      LOGGER.debug("Image is successfully exported to {}", fileOfRGB.getAbsolutePath());
+      setBmpFileSize(fileOfBinary.length());
+      setPngFileSize(fileOfRGB.length());
+
+      String info = "BMP size is: " + getBmpFileSize() + " KB, PNG size is: " + getPngFileSize() + " KB.";
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Export successful");
+      alert.setContentText(info);
+      alert.setHeaderText(null);
+      alert.showAndWait();
     } catch (Exception e) {
       LOGGER.debug("Fail to export the image");
     }
@@ -139,5 +148,21 @@ public class MainScene {
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+  }
+
+  public void setBmpFileSize(long bmpFileSize) {
+    this.bmpFileSize.set(bmpFileSize);
+  }
+
+  public void setPngFileSize(long pngFileSize) {
+    this.pngFileSize.set(pngFileSize);
+  }
+
+  public long getBmpFileSize() {
+    return bmpFileSize.get() / 1000;
+  }
+
+  public long getPngFileSize() {
+    return pngFileSize.get() / 1000;
   }
 }
