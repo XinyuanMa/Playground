@@ -41,7 +41,7 @@ public class Main extends Application {
     VBox root = new VBox(3);
 
     // canvas
-    Canvas canvas = new Canvas(1600, 900);
+    Canvas canvas = new Canvas(800, 600);
     canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> onPressed(e, canvas));
     canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> onDragged(e, canvas));
     canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> onReleased(e, canvas));
