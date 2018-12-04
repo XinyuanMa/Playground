@@ -1,12 +1,13 @@
 package allen.ma;
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritableImage;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,18 +16,65 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class MainSceneBehaviors {
+public class MainScene {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(MainSceneBehaviors.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(MainScene.class);
 
-  private MainSceneController controller;
+  @FXML private VBox root;
+  @FXML private HBox btnHolderBox;
+  @FXML private Canvas canvas;
+  @FXML private Button btnClear;
+  @FXML private Button btnExport;
+  @FXML private Button btnImport;
 
-  public MainSceneBehaviors(MainSceneController controller) {
-    this.controller = controller;
+  private Integer width;
+  private Integer height;
+
+  public MainScene() {
+    width = Picture.getInstance().getWidth();
+    height = Picture.getInstance().getHeight();
+    root = new VBox(3);
+    canvas = new Canvas(width, height);
+    btnHolderBox = new HBox(3);
+    btnClear = new Button("Clear");
+    btnExport = new Button("Export");
+    btnImport = new Button("Import");
+
+    initView();
+    assignBehaviors();
   }
 
-  private void apply() {
-    // TODO
+  public Integer getWidth() {
+    return width;
+  }
+
+  public Integer getHeight() {
+    return height;
+  }
+
+  private void initView() {
+    root.getChildren().add(btnHolderBox);
+    root.getChildren().add(canvas);
+
+    btnHolderBox.getChildren().add(btnClear);
+    btnHolderBox.getChildren().add(btnExport);
+    btnHolderBox.getChildren().add(btnImport);
+  }
+
+  public VBox getRoot() {
+    return root;
+  }
+
+  private void assignBehaviors() {
+    // canvas behaviors
+    canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> onPressed(e, canvas));
+    canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> onDragged(e, canvas));
+    canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> onReleased(e, canvas));
+
+    // button behaviors
+    btnExport.setOnAction(e -> onBtnExportClicked(e, canvas));
+    btnClear.setOnAction(e -> onBtnClearClicked(e, canvas));
+    btnImport.setOnAction(e -> onBtnImportClicked(e, canvas));
   }
 
   private void onPressed(MouseEvent event, Canvas canvas) {
@@ -62,8 +110,8 @@ public class MainSceneBehaviors {
   }
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
-    BufferedImage bBimg = generateBinaryBimg(canvas);
-    BufferedImage bimg = generateBimg(canvas);
+    BufferedImage bBimg = Utils.generateBinaryBimg(canvas);
+    BufferedImage bimg = Utils.generateBimg(canvas);
 
     // exported to build/jfx/app/
     File fileOfBinary = new File("export.bmp");
@@ -91,35 +139,5 @@ public class MainSceneBehaviors {
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-  }
-
-  private BufferedImage generateBinaryBimg(Canvas canvas) {
-    final int width = (int)canvas.getWidth();
-    final int height = (int)canvas.getHeight();
-    WritableImage image = new WritableImage(width, height);
-    canvas.snapshot(null, image);
-    PixelReader reader = image.getPixelReader();
-
-    BufferedImage bimg = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
-
-    for (int x = 0; x < width; x++) {
-      for (int y = 0; y < height; y++) {
-        Color color = reader.getColor(x, y);
-        if (color.getRed() != 1 || color.getGreen() != 1 || color.getBlue() != 1) {
-          bimg.setRGB(x, y, java.awt.Color.WHITE.getRGB());
-        }
-      }
-    }
-
-    return bimg;
-  }
-
-  private BufferedImage generateBimg(Canvas canvas) {
-    final int width = (int)canvas.getWidth();
-    final int height = (int)canvas.getHeight();
-    WritableImage image = new WritableImage(width, height);
-    canvas.snapshot(null, image);
-
-    return SwingFXUtils.fromFXImage(image, null);
   }
 }

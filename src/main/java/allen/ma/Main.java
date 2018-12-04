@@ -31,7 +31,7 @@ public class Main extends Application {
   }
 
   public static void showMainScene() {
-    MainSceneController scene = new MainSceneController();
+    MainScene scene = new MainScene();
     mainScene = new Scene(scene.getRoot(), scene.getWidth(), scene.getHeight());
     stage.setScene(mainScene);
     stage.centerOnScreen();
