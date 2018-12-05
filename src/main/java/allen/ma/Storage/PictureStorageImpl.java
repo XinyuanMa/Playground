@@ -1,10 +1,15 @@
 package allen.ma.Storage;
 
+import allen.ma.Config;
 import allen.ma.Picture;
-import com.google.gson.Gson;
+import allen.ma.Utils;
+
+import javafx.scene.canvas.Canvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,32 +18,74 @@ import java.util.UUID;
 public class PictureStorageImpl implements PictureStorage {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PictureStorageImpl.class);
-  Picture curPicture = Picture.getInstance();
+
+  // formats[0] is bmp, formats[1] is png
+  String[] formats = Config.get().pictureFileExt().split(",");
 
   @Override
-  public void storePicture(UUID id) {
-    Path getPath = getPicturePath(id);
+  public boolean storeBMPPicture(UUID id, Canvas canvas) {
+    BufferedImage bBimg = Utils.generateBinaryBimg(canvas);
 
+    // exported to build/jfx/app/<id>.bmp
+    File fileOfBinary = getBMPPicturePath(id).toFile();
+
+    try {
+      ImageIO.write(bBimg, formats[0], fileOfBinary);
+      return true;
+    } catch (Exception e) {
+      LOGGER.debug("Fail to export the image");
+      return false;
+    }
   }
 
   @Override
-  public Picture loadPicture(UUID id) {
+  public boolean storePNGPicture(UUID id, Canvas canvas) {
+    BufferedImage bimg = Utils.generateBimg(canvas);
+
+    // exported to build/jfx/app/<id>.png
+    File fileOfRGB = getPNGPicturePath(id).toFile();
+
+    try {
+      ImageIO.write(bimg, formats[1], fileOfRGB);
+      return true;
+    } catch (Exception e) {
+      LOGGER.debug("Fail to export the image");
+      return false;
+    }
+  }
+
+  @Override
+  public Picture loadBMPPicture(UUID id) {
     return null;
   }
 
   @Override
-  public Picture loadPictureFromFolder(File srcFile) {
+  public Picture loadPNGPicture(UUID id) {
     return null;
   }
 
   @Override
-  public Path getPicturePath(UUID id) {
-    return Paths.get(id.toString(), ".bmp");
+  public Picture loadBMPPictureFromFolder(File srcFile) {
+    return null;
+  }
+
+  @Override
+  public Picture loadPNGPictureFromFolder(File srcFile) {
+    return null;
+  }
+
+  @Override
+  public Path getBMPPicturePath(UUID id) {
+    return Paths.get(String.format("%s.%s", id.toString(), formats[0]));
+  }
+
+  @Override
+  public Path getPNGPicturePath(UUID id) {
+    return Paths.get(String.format("%s.%s", id.toString(), formats[1]));
   }
 
   @Override
   public Path getPictureMetaFilePath(UUID id) {
-    return Paths.get(id.toString(), ".meta.json");
+    return null;
   }
-
 }

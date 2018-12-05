@@ -1,6 +1,7 @@
 package allen.ma.Storage;
 
 import allen.ma.Picture;
+import javafx.scene.canvas.Canvas;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -8,11 +9,15 @@ import java.util.UUID;
 
 public interface PictureStorage {
 
-  void storePicture(UUID id);
+  boolean storeBMPPicture(UUID id, Canvas canvas);
+  boolean storePNGPicture(UUID id, Canvas canvas);
 
-  Picture loadPicture(UUID id);
-  Picture loadPictureFromFolder(File srcFile);
+  Picture loadBMPPicture(UUID id);
+  Picture loadPNGPicture(UUID id);
+  Picture loadBMPPictureFromFolder(File srcFile);
+  Picture loadPNGPictureFromFolder(File srcFile);
 
-  Path getPicturePath(UUID id);
+  Path getBMPPicturePath(UUID id);
+  Path getPNGPicturePath(UUID id);
   Path getPictureMetaFilePath(UUID id);
 }

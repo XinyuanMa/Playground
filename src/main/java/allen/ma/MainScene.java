@@ -1,5 +1,7 @@
 package allen.ma;
 
+import allen.ma.Storage.PictureStorage;
+import allen.ma.Storage.PictureStorageImpl;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.event.ActionEvent;
@@ -14,11 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.nio.file.Path;
 
 public class MainScene {
 
@@ -38,6 +35,8 @@ public class MainScene {
   private LongProperty bmpFileSize = new SimpleLongProperty();
   private LongProperty pngFileSize = new SimpleLongProperty();
 
+  private PictureStorage storage;
+
   public MainScene() {
     width = Picture.getInstance().getWidth();
     height = Picture.getInstance().getHeight();
@@ -48,6 +47,7 @@ public class MainScene {
     btnExport = new Button("Export");
     btnImport = new Button("Import");
     btnBack = new Button("Back");
+    storage = new PictureStorageImpl();
 
     initView();
     applyBehaviors();
@@ -121,32 +121,13 @@ public class MainScene {
   }
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
-    BufferedImage bBimg = Utils.generateBinaryBimg(canvas);
-    BufferedImage bimg = Utils.generateBimg(canvas);
-
-    // exported to build/jfx/app/
-    File fileOfBinary = new File("export.bmp");
-    File fileOfRGB = new File("export.png");
-
-    try {
-      ImageIO.write(bBimg, "bmp", fileOfBinary);
-      ImageIO.write(bimg, "png", fileOfRGB);
-
-      setBmpFileSize(fileOfBinary.length());
-      setPngFileSize(fileOfRGB.length());
-
-      String info = "BMP size is: " + getBmpFileSize() + " KB, PNG size is: " + getPngFileSize() + " KB.";
+    if (storage.storeBMPPicture(Picture.getInstance().getId(), canvas)
+        && storage.storePNGPicture(Picture.getInstance().getId(), canvas)) {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Export successful");
-      alert.setContentText(info);
+      alert.setTitle("Export result");
       alert.setHeaderText(null);
+      alert.setContentText("Successfully output 2 pictures!");
       alert.showAndWait();
-
-      LOGGER.debug("File output absolute path: {}", fileOfBinary.getAbsolutePath());
-      LOGGER.debug("File output path: {}", fileOfBinary);
-
-    } catch (Exception e) {
-      LOGGER.debug("Fail to export the image");
     }
   }
 
