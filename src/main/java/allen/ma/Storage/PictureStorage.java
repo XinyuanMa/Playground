@@ -1,6 +1,7 @@
 package allen.ma.Storage;
 
-public interface PictureStorage {
+import java.util.UUID;
 
+public interface PictureStorage {
 
 }

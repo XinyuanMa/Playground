@@ -23,7 +23,7 @@ public class Main extends Application {
     stage.show();
   }
 
-  private void showLoginScene() {
+  public static void showLoginScene() {
     LoginScene scene = new LoginScene();
     loginScene = new Scene(scene.getRoot(), 300, 275);
     stage.setScene(loginScene);

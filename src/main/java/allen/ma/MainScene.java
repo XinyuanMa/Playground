@@ -29,6 +29,7 @@ public class MainScene {
   @FXML private Button btnClear;
   @FXML private Button btnExport;
   @FXML private Button btnImport;
+  @FXML private Button btnBack;
 
   private Integer width;
   private Integer height;
@@ -45,6 +46,7 @@ public class MainScene {
     btnClear = new Button("Clear");
     btnExport = new Button("Export");
     btnImport = new Button("Import");
+    btnBack = new Button("Back");
 
     initView();
     applyBehaviors();
@@ -65,6 +67,7 @@ public class MainScene {
     btnHolderBox.getChildren().add(btnClear);
     btnHolderBox.getChildren().add(btnExport);
     btnHolderBox.getChildren().add(btnImport);
+    btnHolderBox.getChildren().add(btnBack);
   }
 
   public VBox getRoot() {
@@ -81,6 +84,7 @@ public class MainScene {
     btnExport.setOnAction(e -> onBtnExportClicked(e, canvas));
     btnClear.setOnAction(e -> onBtnClearClicked(e, canvas));
     btnImport.setOnAction(e -> onBtnImportClicked(e, canvas));
+    btnBack.setOnAction(this::onBtnBackClicked);
   }
 
   private void onPressed(MouseEvent event, Canvas canvas) {
@@ -148,6 +152,10 @@ public class MainScene {
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+  }
+
+  private void onBtnBackClicked(ActionEvent event) {
+    Main.showLoginScene();
   }
 
   public void setBmpFileSize(long bmpFileSize) {
