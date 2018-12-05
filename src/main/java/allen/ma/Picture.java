@@ -20,15 +20,12 @@ public class Picture {
   @Expose
   private Integer height;
 
-  private static Picture pictureInstance;
+  // Singleton
+  private static final Picture pictureInstance = new Picture();
 
   private Picture() {}
 
   public static Picture getInstance() {
-    if (pictureInstance == null) {
-      pictureInstance = new Picture();
-    }
-
     return pictureInstance;
   }
 
