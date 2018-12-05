@@ -1,0 +1,5 @@
+app:
+  initWindowWidth: 400
+  initWindowHeight: 300
+  pictureMetaFileExt: .meta.json
+  pictureFileExt: bmp

@@ -25,7 +25,7 @@ public class Main extends Application {
 
   public static void showLoginScene() {
     LoginScene scene = new LoginScene();
-    loginScene = new Scene(scene.getRoot(), 300, 275);
+    loginScene = new Scene(scene.getRoot(), Config.get().initWindowWidth(), Config.get().initWindowHeight());
     stage.setScene(loginScene);
     stage.centerOnScreen();
   }

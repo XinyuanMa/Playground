@@ -7,14 +7,17 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 public class PictureStorageImpl implements PictureStorage {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PictureStorageImpl.class);
+  Picture curPicture = Picture.getInstance();
 
   @Override
   public void storePicture(UUID id) {
+    Path getPath = getPicturePath(id);
 
   }
 
@@ -30,11 +33,12 @@ public class PictureStorageImpl implements PictureStorage {
 
   @Override
   public Path getPicturePath(UUID id) {
-    return null;
+    return Paths.get(id.toString(), ".bmp");
   }
 
   @Override
-  public Path getImageMetaFilePath(UUID id) {
-    return null;
+  public Path getPictureMetaFilePath(UUID id) {
+    return Paths.get(id.toString(), ".meta.json");
   }
+
 }

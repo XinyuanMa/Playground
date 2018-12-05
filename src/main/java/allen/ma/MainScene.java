@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Path;
 
 public class MainScene {
 
@@ -140,6 +141,10 @@ public class MainScene {
       alert.setContentText(info);
       alert.setHeaderText(null);
       alert.showAndWait();
+
+      LOGGER.debug("File output absolute path: {}", fileOfBinary.getAbsolutePath());
+      LOGGER.debug("File output path: {}", fileOfBinary);
+
     } catch (Exception e) {
       LOGGER.debug("Fail to export the image");
     }

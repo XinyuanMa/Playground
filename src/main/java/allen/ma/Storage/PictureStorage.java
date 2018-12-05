@@ -14,5 +14,5 @@ public interface PictureStorage {
   Picture loadPictureFromFolder(File srcFile);
 
   Path getPicturePath(UUID id);
-  Path getImageMetaFilePath(UUID id);
+  Path getPictureMetaFilePath(UUID id);
 }
