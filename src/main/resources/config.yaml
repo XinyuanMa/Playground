@@ -1,7 +1,6 @@
 app:
   initWindowWidth: 400
   initWindowHeight: 300
-  markerSize: 5.0
   pictureMetaFileExt: meta.json
   pictureFileExt:
     - bmp

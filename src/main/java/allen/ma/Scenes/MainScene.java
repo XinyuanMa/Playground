@@ -1,10 +1,9 @@
-package allen.ma.scenes;
+package allen.ma.Scenes;
 
-import allen.ma.Config;
 import allen.ma.Main;
 import allen.ma.Picture;
-import allen.ma.storage.PictureStorage;
-import allen.ma.storage.PictureStorageImpl;
+import allen.ma.Storage.PictureStorage;
+import allen.ma.Storage.PictureStorageImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -91,7 +90,7 @@ public class MainScene {
   private void onPressed(MouseEvent event, Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     Color color = Picture.getInstance().getColor();
-    double markerSize = Config.get().markerSize();
+    double markerSize = 5.0;
 
     gc.setFill(color);
     gc.setStroke(color);

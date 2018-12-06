@@ -16,7 +16,6 @@ public class Config {
   public interface AppCfg {
     Integer initWindowWidth();
     Integer initWindowHeight();
-    Double markerSize();
     String pictureMetaFileExt();
     String pictureFileExt();
   }
@@ -36,11 +35,6 @@ public class Config {
     @Override
     public Integer initWindowHeight() {
       return appCfg.initWindowHeight();
-    }
-
-    @Override
-    public Double markerSize() {
-      return appCfg.markerSize();
     }
 
     @Override
