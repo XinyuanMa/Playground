@@ -1,7 +1,7 @@
 package allen.ma;
 
-import allen.ma.Scenes.LoginScene;
-import allen.ma.Scenes.MainScene;
+import allen.ma.scenes.LoginScene;
+import allen.ma.scenes.MainScene;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

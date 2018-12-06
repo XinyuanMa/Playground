@@ -1,4 +1,4 @@
-package allen.ma.Adapter;
+package allen.ma.adapter;
 
 import com.google.gson.*;
 import javafx.scene.paint.Color;

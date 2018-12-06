@@ -1,6 +1,6 @@
-package allen.ma.Storage;
+package allen.ma.storage;
 
-import allen.ma.Adapter.ColorAdapter;
+import allen.ma.adapter.ColorAdapter;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

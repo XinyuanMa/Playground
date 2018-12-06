@@ -1,4 +1,4 @@
-package allen.ma.Storage;
+package allen.ma.storage;
 
 import allen.ma.Config;
 import allen.ma.Picture;

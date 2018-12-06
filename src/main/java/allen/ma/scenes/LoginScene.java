@@ -1,4 +1,4 @@
-package allen.ma.Scenes;
+package allen.ma.scenes;
 
 import allen.ma.Main;
 import allen.ma.Picture;
