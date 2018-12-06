@@ -56,8 +56,8 @@ public class Config {
     List<Path> configFiles = new LinkedList<>();
     configFiles.add(Paths.get(CFG_FILE_NAME));
 
+    // go to http://www.cfg4j.org/ for more information
     ConfigFilesProvider configFilesProvider = () -> configFiles;
-    // local config file
     ConfigurationSource source = new ClasspathConfigurationSource(configFilesProvider);
     ConfigurationProvider provider = new ConfigurationProviderBuilder()
         .withConfigurationSource(source)

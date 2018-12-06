@@ -1,13 +1,12 @@
-package allen.ma;
+package allen.ma.Scenes;
 
+import allen.ma.Main;
+import allen.ma.Picture;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -57,19 +56,39 @@ public class LoginScene {
     return colorPicker.getValue();
   }
 
-  private Integer getWidth() {
+  private Integer getWidth() throws NumberFormatException {
     return Integer.parseInt(widthField.getText());
   }
 
-  private Integer getHeight() {
+  private Integer getHeight() throws  NumberFormatException {
     return Integer.parseInt(heightField.getText());
   }
 
   private void onStartButton (ActionEvent event) {
     Color color = getColor();
-    Integer width = getWidth();
-    Integer height = getHeight();
-    Picture.getInstance().init(color, width, height);
-    Main.showMainScene();
+    if (color.equals(Color.WHITE)) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setHeaderText("Color WHITE is not allowed");
+      alert.setContentText("What? You want to drawn on whiteboard with white color?");
+      alert.showAndWait();
+
+      return;
+    }
+
+    try {
+      Integer width = getWidth();
+      Integer height = getHeight();
+      Picture.getInstance().init(color, width, height);
+      Main.showMainScene();
+    } catch (NumberFormatException e) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setHeaderText("Error in width/height value");
+      alert.setContentText("Please kindly type numbers in width/height fields, would ya?");
+      alert.showAndWait();
+
+      return;
+    }
   }
 }

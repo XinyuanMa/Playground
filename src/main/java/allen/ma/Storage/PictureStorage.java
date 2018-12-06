@@ -11,6 +11,7 @@ public interface PictureStorage {
 
   boolean storeBMPPicture(UUID id, Canvas canvas);
   boolean storePNGPicture(UUID id, Canvas canvas);
+  boolean serializeToJson(UUID id);
 
   Picture loadBMPPicture(UUID id);
   Picture loadPNGPicture(UUID id);

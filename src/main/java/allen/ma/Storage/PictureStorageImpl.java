@@ -4,6 +4,7 @@ import allen.ma.Config;
 import allen.ma.Picture;
 import allen.ma.Utils;
 
+import com.google.gson.Gson;
 import javafx.scene.canvas.Canvas;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +12,14 @@ import org.slf4j.LoggerFactory;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-public class PictureStorageImpl implements PictureStorage {
+public class PictureStorageImpl extends GsonProvider implements PictureStorage {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PictureStorageImpl.class);
 
@@ -55,6 +59,19 @@ public class PictureStorageImpl implements PictureStorage {
   }
 
   @Override
+  public boolean serializeToJson(UUID id) {
+    Gson gson = getGson();
+
+    try (Writer writer = new FileWriter(getPictureMetaFilePath(id).toString())) {
+      gson.toJson(Picture.getInstance(), writer);
+      return true;
+    } catch (IOException e) {
+      LOGGER.error("Fail to write picture data as JSON file", e);
+      return false;
+    }
+  }
+
+  @Override
   public Picture loadBMPPicture(UUID id) {
     return null;
   }
@@ -86,6 +103,6 @@ public class PictureStorageImpl implements PictureStorage {
 
   @Override
   public Path getPictureMetaFilePath(UUID id) {
-    return null;
+    return Paths.get(String.format("%s.%s", id.toString(), Config.get().pictureMetaFileExt()));
   }
 }

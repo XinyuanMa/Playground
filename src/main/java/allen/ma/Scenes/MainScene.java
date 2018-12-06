@@ -1,9 +1,9 @@
-package allen.ma;
+package allen.ma.Scenes;
 
+import allen.ma.Main;
+import allen.ma.Picture;
 import allen.ma.Storage.PictureStorage;
 import allen.ma.Storage.PictureStorageImpl;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.UUID;
 
 public class MainScene {
 
@@ -31,9 +33,6 @@ public class MainScene {
 
   private Integer width;
   private Integer height;
-
-  private LongProperty bmpFileSize = new SimpleLongProperty();
-  private LongProperty pngFileSize = new SimpleLongProperty();
 
   private PictureStorage storage;
 
@@ -121,8 +120,10 @@ public class MainScene {
   }
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
-    if (storage.storeBMPPicture(Picture.getInstance().getId(), canvas)
-        && storage.storePNGPicture(Picture.getInstance().getId(), canvas)) {
+    UUID pictureID = Picture.getInstance().getId();
+    if (storage.storeBMPPicture(pictureID, canvas)
+        && storage.storePNGPicture(pictureID, canvas)
+        && storage.serializeToJson(pictureID)) {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Export result");
       alert.setHeaderText(null);
@@ -142,21 +143,5 @@ public class MainScene {
 
   private void onBtnBackClicked(ActionEvent event) {
     Main.showLoginScene();
-  }
-
-  public void setBmpFileSize(long bmpFileSize) {
-    this.bmpFileSize.set(bmpFileSize);
-  }
-
-  public void setPngFileSize(long pngFileSize) {
-    this.pngFileSize.set(pngFileSize);
-  }
-
-  public long getBmpFileSize() {
-    return bmpFileSize.get() / 1000;
-  }
-
-  public long getPngFileSize() {
-    return pngFileSize.get() / 1000;
   }
 }
