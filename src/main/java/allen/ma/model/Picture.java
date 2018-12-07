@@ -20,35 +20,26 @@ public class Picture {
   @Expose
   private Integer height;
 
-  // Singleton
-  private static final Picture pictureInstance = new Picture();
-
-  private Picture() {}
-
-  public static Picture getInstance() {
-    return pictureInstance;
-  }
-
-  public void init(Color color, Integer width, Integer height) {
-    pictureInstance.id = UUID.randomUUID();
-    pictureInstance.color = color;
-    pictureInstance.width = width;
-    pictureInstance.height = height;
+  public Picture(Color color, Integer width, Integer height) {
+    this.id = UUID.randomUUID();
+    this.color = color;
+    this.width = width;
+    this.height = height;
   }
 
   public UUID getId() {
-    return pictureInstance.id;
+    return id;
   }
 
   public Integer getWidth() {
-    return pictureInstance.width;
+    return width;
   }
 
   public Integer getHeight() {
-    return pictureInstance.height;
+    return height;
   }
 
   public Color getColor() {
-    return pictureInstance.color;
+    return color;
   }
 }

@@ -5,6 +5,7 @@ import allen.ma.model.Picture;
 import allen.ma.Utils;
 import com.google.gson.Gson;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +27,11 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   private static String[] formats = Config.get().pictureFileExt().split(",");
 
   @Override
-  public boolean storeBMPPicture(UUID id, Canvas canvas) {
-    BufferedImage bBimg = Utils.generateBinaryBimg(canvas);
+  public boolean storeBMPPicture(Picture picture, Image image) {
+    BufferedImage bBimg = Utils.generateBinaryBimg(image);
 
     // exported to build/jfx/app/<id>.bmp
-    File fileOfBinary = getBMPPicturePath(id).toFile();
+    File fileOfBinary = getBMPPicturePath(picture).toFile();
 
     try {
       ImageIO.write(bBimg, formats[0], fileOfBinary);
@@ -42,11 +43,11 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   }
 
   @Override
-  public boolean storePNGPicture(UUID id, Canvas canvas) {
-    BufferedImage bimg = Utils.generateBimg(canvas);
+  public boolean storePNGPicture(Picture picture, Image image) {
+    BufferedImage bimg = Utils.generateBimg(image);
 
     // exported to build/jfx/app/<id>.png
-    File fileOfRGB = getPNGPicturePath(id).toFile();
+    File fileOfRGB = getPNGPicturePath(picture).toFile();
 
     try {
       ImageIO.write(bimg, formats[1], fileOfRGB);
@@ -58,11 +59,26 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   }
 
   @Override
-  public boolean serializeToJson(UUID id) {
+  public boolean storeByteArray(Picture picture, Image image) {
+    return false;
+  }
+
+  @Override
+  public boolean storeBooleanArray(Picture picture, Image image) {
+    return false;
+  }
+
+  @Override
+  public boolean storeTxtFile(Picture picture, Image image) {
+    return false;
+  }
+
+  @Override
+  public boolean serializeToJson(Picture picture) {
     Gson gson = getGson();
 
-    try (Writer writer = new FileWriter(getPictureMetaFilePath(id).toString())) {
-      gson.toJson(Picture.getInstance(), writer);
+    try (Writer writer = new FileWriter(getPictureMetaFilePath(picture).toString())) {
+      gson.toJson(picture, writer);
       return true;
     } catch (IOException e) {
       LOGGER.error("Fail to write picture data as JSON file", e);
@@ -91,17 +107,17 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   }
 
   @Override
-  public Path getBMPPicturePath(UUID id) {
-    return Paths.get(String.format("%s.%s", id.toString(), formats[0]));
+  public Path getBMPPicturePath(Picture picture) {
+    return Paths.get(String.format("%s.%s", picture.getId().toString(), formats[0]));
   }
 
   @Override
-  public Path getPNGPicturePath(UUID id) {
-    return Paths.get(String.format("%s.%s", id.toString(), formats[1]));
+  public Path getPNGPicturePath(Picture picture) {
+    return Paths.get(String.format("%s.%s", picture.getId().toString(), formats[1]));
   }
 
   @Override
-  public Path getPictureMetaFilePath(UUID id) {
-    return Paths.get(String.format("%s.%s", id.toString(), Config.get().pictureMetaFileExt()));
+  public Path getPictureMetaFilePath(Picture picture) {
+    return Paths.get(String.format("%s.%s", picture.getId().toString(), Config.get().pictureMetaFileExt()));
   }
 }

@@ -2,6 +2,8 @@ package allen.ma.controller;
 
 import allen.ma.Main;
 import allen.ma.model.Picture;
+import allen.ma.service.PictureService;
+import allen.ma.service.PictureServiceImpl;
 import allen.ma.storage.PictureStorage;
 import allen.ma.storage.PictureStorageImpl;
 import javafx.event.ActionEvent;
@@ -16,11 +18,11 @@ import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.UUID;
-
 public class MainScene {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MainScene.class);
+
+  private static final PictureService service = PictureServiceImpl.getInstance();
 
   private VBox root;
   private HBox btnHolderBox;
@@ -36,9 +38,8 @@ public class MainScene {
   private PictureStorage storage;
 
   public MainScene() {
-    System.out.println("calling MainScence constructor here");
-    width = Picture.getInstance().getWidth();
-    height = Picture.getInstance().getHeight();
+    width = service.getCurrentPicture().getWidth();
+    height = service.getCurrentPicture().getHeight();
     root = new VBox(3);
     canvas = new Canvas(width, height);
     btnHolderBox = new HBox(3);
@@ -89,7 +90,7 @@ public class MainScene {
 
   private void onPressed(MouseEvent event, Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
-    Color color = Picture.getInstance().getColor();
+    Color color = service.getCurrentPicture().getColor();
     double markerSize = 5.0;
 
     gc.setFill(color);
@@ -120,10 +121,10 @@ public class MainScene {
   }
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
-    UUID pictureID = Picture.getInstance().getId();
-    if (storage.storeBMPPicture(pictureID, canvas)
-        && storage.storePNGPicture(pictureID, canvas)
-        && storage.serializeToJson(pictureID)) {
+    Picture picture = service.getCurrentPicture();
+    if (storage.storeBMPPicture(picture, canvas.snapshot(null, null))
+        && storage.storePNGPicture(picture, canvas.snapshot(null, null))
+        && storage.serializeToJson(picture)) {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Export result");
       alert.setHeaderText(null);

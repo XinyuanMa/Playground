@@ -2,6 +2,8 @@ package allen.ma.controller;
 
 import allen.ma.Main;
 import allen.ma.model.Picture;
+import allen.ma.service.PictureService;
+import allen.ma.service.PictureServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class LoginScene {
+  private static final PictureService service = PictureServiceImpl.getInstance();
+
   private GridPane root;
   private Label widthLabel;
   private Label heightLabel;
@@ -71,14 +75,15 @@ public class LoginScene {
       alert.setHeaderText("Color WHITE is not allowed");
       alert.setContentText("What? You want to drawn on whiteboard with white color?");
       alert.showAndWait();
-
       return;
     }
 
     try {
       Integer width = getWidth();
       Integer height = getHeight();
-      Picture.getInstance().init(color, width, height);
+      Picture picture = new Picture(color, width, height);
+      service.createNewPicture(picture);
+      service.setCurPicture(picture);
       Main.showMainScene();
     } catch (NumberFormatException e) {
       Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -86,7 +91,6 @@ public class LoginScene {
       alert.setHeaderText("Error in width/height value");
       alert.setContentText("Please kindly type numbers in width/height fields, would ya?");
       alert.showAndWait();
-
       return;
     }
   }
