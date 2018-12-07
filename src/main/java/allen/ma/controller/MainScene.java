@@ -4,8 +4,6 @@ import allen.ma.Main;
 import allen.ma.model.Picture;
 import allen.ma.service.PictureService;
 import allen.ma.service.PictureServiceImpl;
-import allen.ma.storage.PictureStorage;
-import allen.ma.storage.PictureStorageImpl;
 import javafx.event.ActionEvent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,11 +30,10 @@ public class MainScene {
   private Button btnExport;
   private Button btnImport;
   private Button btnBack;
+  private FileChooser fileChooser;
 
   private Integer width;
   private Integer height;
-
-  private PictureStorage storage;
 
   public MainScene() {
     width = service.getCurrentPicture().getWidth();
@@ -47,7 +45,6 @@ public class MainScene {
     btnExport = new Button("Export");
     btnImport = new Button("Import");
     btnBack = new Button("Back");
-    storage = new PictureStorageImpl();
 
     initView();
     applyBehaviors();
@@ -122,13 +119,13 @@ public class MainScene {
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
     Picture picture = service.getCurrentPicture();
-    if (storage.storeBMPPicture(picture, canvas.snapshot(null, null))
-        && storage.storePNGPicture(picture, canvas.snapshot(null, null))
-        && storage.serializeToJson(picture)) {
+    if (service.exportPictureToBMP(picture, canvas.snapshot(null, null))
+        && service.exportPictureToPNG(picture, canvas.snapshot(null, null))
+        && service.serializeToJson(picture)) {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Export result");
       alert.setHeaderText(null);
-      alert.setContentText("Successfully output 2 pictures!");
+      alert.setContentText("Successfully output pictures!");
       alert.showAndWait();
     }
   }

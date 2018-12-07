@@ -18,11 +18,13 @@ public interface PictureService {
   void createNewPicture(Picture picture);
   void removePicture(Picture picture);
 
-  void exportPictureToBMP(Picture picture, Image pictureImage);
-  void exportPictureToPNG(Picture picture, Image pictureImage);
-  void exportPictureToByteArray(Picture picture, Image pictureImage);
-  void exportPictureToBooleanArary(Picture picture, Image pictureImage);
-  void exportPictureToTxtFile(Picture picture, Image pictureImage);
+  boolean exportPictureToBMP(Picture picture, Image pictureImage);
+  boolean exportPictureToPNG(Picture picture, Image pictureImage);
+  boolean exportPictureToByteArray(Picture picture, Image pictureImage);
+  boolean exportPictureToBooleanArary(Picture picture, Image pictureImage);
+  boolean exportPictureToTxtFile(Picture picture, Image pictureImage);
+
+  boolean serializeToJson(Picture picture);
 
   Image loadPictureFromBMP(Picture picture);
   Image loadPictureFromPNG(Picture picture);

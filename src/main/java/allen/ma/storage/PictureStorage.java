@@ -1,7 +1,6 @@
 package allen.ma.storage;
 
 import allen.ma.model.Picture;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 
 import java.io.File;

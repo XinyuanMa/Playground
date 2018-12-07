@@ -5,6 +5,8 @@ import allen.ma.storage.PictureStorage;
 import allen.ma.storage.PictureStorageImpl;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +14,7 @@ import java.util.UUID;
 
 public class PictureServiceImpl implements PictureService {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(PictureServiceImpl.class);
   private static final PictureService service = new PictureServiceImpl();
 
   // states
@@ -53,28 +56,33 @@ public class PictureServiceImpl implements PictureService {
   }
 
   @Override
-  public void exportPictureToBMP(Picture picture, Image pictureImage) {
-    storage.storeBMPPicture(picture, pictureImage);
+  public boolean exportPictureToBMP(Picture picture, Image pictureImage) {
+    return storage.storeBMPPicture(picture, pictureImage);
   }
 
   @Override
-  public void exportPictureToPNG(Picture picture, Image pictureImage) {
-    storage.storePNGPicture(picture, pictureImage);
+  public boolean exportPictureToPNG(Picture picture, Image pictureImage) {
+    return storage.storePNGPicture(picture, pictureImage);
   }
 
   @Override
-  public void exportPictureToByteArray(Picture picture, Image pictureImage) {
-
+  public boolean exportPictureToByteArray(Picture picture, Image pictureImage) {
+    return false;
   }
 
   @Override
-  public void exportPictureToBooleanArary(Picture picture, Image pictureImage) {
-
+  public boolean exportPictureToBooleanArary(Picture picture, Image pictureImage) {
+    return false;
   }
 
   @Override
-  public void exportPictureToTxtFile(Picture picture, Image pictureImage) {
+  public boolean exportPictureToTxtFile(Picture picture, Image pictureImage) {
+    return false;
+  }
 
+  @Override
+  public boolean serializeToJson(Picture picture) {
+    return storage.serializeToJson(picture);
   }
 
   @Override
