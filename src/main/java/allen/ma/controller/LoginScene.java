@@ -1,9 +1,8 @@
-package allen.ma.Scenes;
+package allen.ma.controller;
 
 import allen.ma.Main;
-import allen.ma.Picture;
+import allen.ma.model.Picture;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -11,14 +10,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class LoginScene {
-  @FXML private GridPane root;
-  @FXML private Label widthLabel;
-  @FXML private Label heightLabel;
-  @FXML private Label colorPickerLabel;
-  @FXML private TextField widthField;
-  @FXML private TextField heightField;
-  @FXML private Button startBtn;
-  @FXML private ColorPicker colorPicker;
+  private GridPane root;
+  private Label widthLabel;
+  private Label heightLabel;
+  private Label colorPickerLabel;
+  private TextField widthField;
+  private TextField heightField;
+  private Button startBtn;
+  private ColorPicker colorPicker;
 
   public LoginScene() {
     root = new GridPane();
@@ -28,7 +27,7 @@ public class LoginScene {
     widthField = new TextField();
     heightField = new TextField();
     startBtn = new Button("Start");
-    colorPicker = new ColorPicker();
+    colorPicker = new ColorPicker(Color.BLACK);
     startBtn.setOnAction(this::onStartButton);
 
     intiView();

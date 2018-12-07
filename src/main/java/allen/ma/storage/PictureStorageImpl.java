@@ -1,9 +1,8 @@
-package allen.ma.Storage;
+package allen.ma.storage;
 
 import allen.ma.Config;
-import allen.ma.Picture;
+import allen.ma.model.Picture;
 import allen.ma.Utils;
-
 import com.google.gson.Gson;
 import javafx.scene.canvas.Canvas;
 import org.slf4j.Logger;
@@ -24,7 +23,7 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   private static final Logger LOGGER = LoggerFactory.getLogger(PictureStorageImpl.class);
 
   // formats[0] is bmp, formats[1] is png
-  String[] formats = Config.get().pictureFileExt().split(",");
+  private static String[] formats = Config.get().pictureFileExt().split(",");
 
   @Override
   public boolean storeBMPPicture(UUID id, Canvas canvas) {

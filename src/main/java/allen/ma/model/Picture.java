@@ -1,4 +1,4 @@
-package allen.ma;
+package allen.ma.model;
 
 import com.google.gson.annotations.Expose;
 import javafx.scene.paint.Color;

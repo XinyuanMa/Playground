@@ -1,11 +1,10 @@
-package allen.ma.Scenes;
+package allen.ma.controller;
 
 import allen.ma.Main;
-import allen.ma.Picture;
-import allen.ma.Storage.PictureStorage;
-import allen.ma.Storage.PictureStorageImpl;
+import allen.ma.model.Picture;
+import allen.ma.storage.PictureStorage;
+import allen.ma.storage.PictureStorageImpl;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -23,13 +22,13 @@ public class MainScene {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MainScene.class);
 
-  @FXML private VBox root;
-  @FXML private HBox btnHolderBox;
-  @FXML private Canvas canvas;
-  @FXML private Button btnClear;
-  @FXML private Button btnExport;
-  @FXML private Button btnImport;
-  @FXML private Button btnBack;
+  private VBox root;
+  private HBox btnHolderBox;
+  private Canvas canvas;
+  private Button btnClear;
+  private Button btnExport;
+  private Button btnImport;
+  private Button btnBack;
 
   private Integer width;
   private Integer height;
@@ -37,6 +36,7 @@ public class MainScene {
   private PictureStorage storage;
 
   public MainScene() {
+    System.out.println("calling MainScence constructor here");
     width = Picture.getInstance().getWidth();
     height = Picture.getInstance().getHeight();
     root = new VBox(3);

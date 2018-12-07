@@ -1,12 +1,12 @@
-package allen.ma.Storage;
+package allen.ma.storage;
 
-import allen.ma.Adapter.ColorAdapter;
+import allen.ma.ColorAdapter;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.scene.paint.Color;
 
-public class GsonProvider {
+public abstract class GsonProvider {
   public static Gson getGson() {
     // go to https://github.com/google/gson for more information
     return new GsonBuilder()
