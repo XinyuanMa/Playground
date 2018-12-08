@@ -1,6 +1,8 @@
 package allen.ma.controller;
 
+import allen.ma.Config;
 import allen.ma.Main;
+import allen.ma.Utils;
 import allen.ma.model.Picture;
 import allen.ma.service.PictureService;
 import allen.ma.service.PictureServiceImpl;
@@ -14,8 +16,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 public class MainScene {
 
@@ -45,6 +50,7 @@ public class MainScene {
     btnExport = new Button("Export");
     btnImport = new Button("Import");
     btnBack = new Button("Back");
+    fileChooser = new FileChooser();
 
     initView();
     applyBehaviors();
@@ -66,6 +72,10 @@ public class MainScene {
     btnHolderBox.getChildren().add(btnExport);
     btnHolderBox.getChildren().add(btnImport);
     btnHolderBox.getChildren().add(btnBack);
+
+    fileChooser.getExtensionFilters().addAll(
+        Utils.buildExtensionFilter(Config.get().pictureMetaFileExt())
+    );
   }
 
   public VBox getRoot() {
@@ -131,7 +141,12 @@ public class MainScene {
   }
 
   private void onBtnImportClicked(ActionEvent event, Canvas canvas) {
-    // TODO
+    Window stage = root.getScene().getWindow();
+    File selectedFile = fileChooser.showOpenDialog(stage);
+    if (selectedFile == null || !selectedFile.isFile()) {
+      return;
+    }
+    LOGGER.debug("selectedFile is {}", selectedFile);
   }
 
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {

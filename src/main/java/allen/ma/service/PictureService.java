@@ -4,6 +4,7 @@ import allen.ma.model.Picture;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.Map;
 import java.util.UUID;
 
@@ -11,11 +12,8 @@ public interface PictureService {
 
   Picture getCurrentPicture();
 
-  Map<UUID, Picture> getAllPictures();
-
   void setCurPicture(Picture picture);
 
-  void createNewPicture(Picture picture);
   void removePicture(Picture picture);
 
   boolean exportPictureToBMP(Picture picture, Image pictureImage);
@@ -25,6 +23,7 @@ public interface PictureService {
   boolean exportPictureToTxtFile(Picture picture, Image pictureImage);
 
   boolean serializeToJson(Picture picture);
+  boolean deserializeFromJson(File file);
 
   Image loadPictureFromBMP(Picture picture);
   Image loadPictureFromPNG(Picture picture);

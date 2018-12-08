@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,7 +19,6 @@ public class PictureServiceImpl implements PictureService {
   private static final PictureService service = new PictureServiceImpl();
 
   // states
-  private Map<UUID, Picture> pictures = new HashMap<>();
   private Picture curPicture;
   private PictureStorage storage = new PictureStorageImpl();
 
@@ -36,18 +36,6 @@ public class PictureServiceImpl implements PictureService {
   @Override
   public Picture getCurrentPicture() {
     return curPicture;
-  }
-
-  @Override
-  public Map<UUID, Picture> getAllPictures() {
-    return pictures;
-  }
-
-  @Override
-  public void createNewPicture(Picture picture) {
-    if (!pictures.containsKey(picture.getId())) {
-      pictures.put(picture.getId(), picture);
-    }
   }
 
   @Override
@@ -83,6 +71,11 @@ public class PictureServiceImpl implements PictureService {
   @Override
   public boolean serializeToJson(Picture picture) {
     return storage.serializeToJson(picture);
+  }
+
+  @Override
+  public boolean deserializeFromJson(File file) {
+    return false;
   }
 
   @Override
