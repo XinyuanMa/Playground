@@ -38,7 +38,7 @@ public class Utils {
   public static FileChooser.ExtensionFilter buildExtensionFilter(String extension) {
     String[] exts = extension.split(",");
     FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter(
-        "Image files",
+        "Picture JSON files",
         Arrays.stream(exts)
             .map(ext -> String.format("*.%s", ext))
             .collect(Collectors.toList())

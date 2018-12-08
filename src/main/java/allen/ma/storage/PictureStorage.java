@@ -14,7 +14,9 @@ public interface PictureStorage {
   boolean storeByteArray(Picture picture, Image image);
   boolean storeBooleanArray(Picture picture, Image image);
   boolean storeTxtFile(Picture picture, Image image);
+
   boolean serializeToJson(Picture picture);
+  Picture deserializeFromJson(File file);
 
   Picture loadBMPPicture(UUID id);
   Picture loadPNGPicture(UUID id);

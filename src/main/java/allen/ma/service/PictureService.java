@@ -23,7 +23,7 @@ public interface PictureService {
   boolean exportPictureToTxtFile(Picture picture, Image pictureImage);
 
   boolean serializeToJson(Picture picture);
-  boolean deserializeFromJson(File file);
+  Picture deserializeFromJson(File file);
 
   Image loadPictureFromBMP(Picture picture);
   Image loadPictureFromPNG(Picture picture);

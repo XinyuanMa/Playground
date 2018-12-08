@@ -6,15 +6,13 @@ import allen.ma.Utils;
 import com.google.gson.Gson;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -87,6 +85,16 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   }
 
   @Override
+  public Picture deserializeFromJson(File file) {
+    try (Reader reader = new FileReader(file)) {
+      return getGson().fromJson(reader, Picture.class);
+    } catch (Exception e) {
+      LOGGER.error("Fail to load the picture", e);
+      throw new IllegalStateException("Invalid Picture JSON file.");
+    }
+  }
+
+  @Override
   public Picture loadBMPPicture(UUID id) {
     return null;
   }
@@ -119,5 +127,10 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   @Override
   public Path getPictureMetaFilePath(Picture picture) {
     return Paths.get(String.format("%s.%s", picture.getId().toString(), Config.get().pictureMetaFileExt()));
+  }
+
+  private boolean isPictureMetaFile(File file) {
+    return file != null && file.isFile()
+        && StringUtils.endsWithIgnoreCase(file.getName(), Config.get().pictureMetaFileExt());
   }
 }

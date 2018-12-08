@@ -74,8 +74,10 @@ public class PictureServiceImpl implements PictureService {
   }
 
   @Override
-  public boolean deserializeFromJson(File file) {
-    return false;
+  public Picture deserializeFromJson(File file) {
+    Picture picture = storage.deserializeFromJson(file);
+    setCurPicture(picture);
+    return picture;
   }
 
   @Override

@@ -123,5 +123,11 @@ public class LoginScene {
       return;
     }
     LOGGER.debug("selectedFile is {}", selectedFile);
+
+    // currently disabled; causes severe bug if otherwise
+//    Picture picture = service.deserializeFromJson(selectedFile);
+//    LOGGER.debug("picture id: {}", picture.getId());
+//    LOGGER.debug("picture width: {}, picture height: {}", picture.getWidth(), picture.getHeight());
+//    LOGGER.debug("picure color: {}", picture.getColor());
   }
 }
