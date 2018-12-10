@@ -9,10 +9,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.slf4j.Logger;
@@ -31,9 +30,7 @@ public class EditScene {
   private Button btnExport;
   private ColorPicker colorPicker;
 
-  // in order to hold the image and the canvas
-  private StackPane stackPane;
-  private ImageView imageView;
+  private Image image;
 
   private Integer width;
   private Integer height;
@@ -41,14 +38,16 @@ public class EditScene {
   public EditScene() {
     width = service.getCurrentPicture().getWidth();
     height = service.getCurrentPicture().getHeight();
+
     root = new VBox(3);
-    canvas = new Canvas(width, height);
+
     btnHolderBox = new HBox(3);
     btnClear = new Button("Clear");
     btnExport = new Button("Export");
     colorPicker = new ColorPicker(service.getCurrentPicture().getColor());
-    stackPane = new StackPane();
-    imageView = new ImageView();
+
+    image = service.loadPicture(service.getCurrentPicture());
+    canvas = new Canvas(width, height);
 
     initView();
     applyBehaviors();
@@ -64,16 +63,13 @@ public class EditScene {
 
   private void initView() {
     root.getChildren().add(btnHolderBox);
-//    root.getChildren().add(canvas);
-    root.getChildren().add(stackPane);
+    root.getChildren().add(canvas);
 
     btnHolderBox.getChildren().add(colorPicker);
     btnHolderBox.getChildren().add(btnClear);
     btnHolderBox.getChildren().add(btnExport);
 
-    imageView.setImage(service.loadPicture(service.getCurrentPicture()));
-    stackPane.getChildren().add(imageView);
-    stackPane.getChildren().add(canvas);
+    canvas.getGraphicsContext2D().drawImage(image, 0, 0);
   }
 
   public VBox getRoot() {
