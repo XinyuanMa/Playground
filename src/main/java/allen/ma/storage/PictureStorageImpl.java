@@ -95,22 +95,26 @@ public class PictureStorageImpl extends GsonProvider implements PictureStorage {
   }
 
   @Override
-  public Picture loadBMPPicture(UUID id) {
+  public Image loadBMPPicture(Picture picture) {
+    String path = getBMPPicturePath(picture).toUri().toString();
+    Image imageFromBMP = new Image(path);
+    return imageFromBMP;
+  }
+
+  @Override
+  public Image loadPNGPicture(Picture picture) {
+    String path = getPNGPicturePath(picture).toUri().toString();
+    Image imageFromPNG = new Image(path);
+    return imageFromPNG;
+  }
+
+  @Override
+  public Image loadBytePicture(Picture picture) {
     return null;
   }
 
   @Override
-  public Picture loadPNGPicture(UUID id) {
-    return null;
-  }
-
-  @Override
-  public Picture loadBMPPictureFromFolder(File srcFile) {
-    return null;
-  }
-
-  @Override
-  public Picture loadPNGPictureFromFolder(File srcFile) {
+  public Image loadBooleanPicture(Picture picture) {
     return null;
   }
 

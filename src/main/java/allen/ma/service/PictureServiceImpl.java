@@ -39,32 +39,29 @@ public class PictureServiceImpl implements PictureService {
   }
 
   @Override
-  public void removePicture(Picture picture) {
-
+  public boolean exportPicture(Picture picture, Image pictureImage) {
+    return exportPictureToBMP(picture, pictureImage)
+          && exportPictureToPNG(picture, pictureImage)
+          && serializeToJson(picture);
   }
 
-  @Override
-  public boolean exportPictureToBMP(Picture picture, Image pictureImage) {
+  private boolean exportPictureToBMP(Picture picture, Image pictureImage) {
     return storage.storeBMPPicture(picture, pictureImage);
   }
 
-  @Override
-  public boolean exportPictureToPNG(Picture picture, Image pictureImage) {
+  private boolean exportPictureToPNG(Picture picture, Image pictureImage) {
     return storage.storePNGPicture(picture, pictureImage);
   }
 
-  @Override
-  public boolean exportPictureToByteArray(Picture picture, Image pictureImage) {
+  private boolean exportPictureToByteArray(Picture picture, Image pictureImage) {
     return false;
   }
 
-  @Override
-  public boolean exportPictureToBooleanArary(Picture picture, Image pictureImage) {
+  private boolean exportPictureToBooleanArary(Picture picture, Image pictureImage) {
     return false;
   }
 
-  @Override
-  public boolean exportPictureToTxtFile(Picture picture, Image pictureImage) {
+  private boolean exportPictureToTxtFile(Picture picture, Image pictureImage) {
     return false;
   }
 
@@ -81,27 +78,30 @@ public class PictureServiceImpl implements PictureService {
   }
 
   @Override
-  public Image loadPictureFromBMP(Picture picture) {
+  public Image loadPicture(Picture picture) {
+    return loadPictureFromPNG(picture);
+//    return loadPictureFromBMP(picture);
+  }
+
+  private Image loadPictureFromBMP(Picture picture) {
+    Image imageFromBMP = storage.loadBMPPicture(picture);
+    return imageFromBMP;
+  }
+
+  private Image loadPictureFromPNG(Picture picture) {
+    Image imageFromPNG = storage.loadPNGPicture(picture);
+    return imageFromPNG;
+  }
+
+  private Image loadPictureFromByteArray(Picture picture) {
     return null;
   }
 
-  @Override
-  public Image loadPictureFromPNG(Picture picture) {
+  private Image loadPictureFromBooleanArray(Picture picture) {
     return null;
   }
 
-  @Override
-  public Image loadPictureFromByteArray(Picture picture) {
-    return null;
-  }
-
-  @Override
-  public Image loadPictureFromBooleanArray(Picture picture) {
-    return null;
-  }
-
-  @Override
-  public Image loadPictureFromTxtFile(Picture picture) {
+  private Image loadPictureFromTxtFile(Picture picture) {
     return null;
   }
 }

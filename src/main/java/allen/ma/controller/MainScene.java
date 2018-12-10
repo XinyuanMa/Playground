@@ -129,9 +129,7 @@ public class MainScene {
 
   private void onBtnExportClicked(ActionEvent event, Canvas canvas) {
     Picture picture = service.getCurrentPicture();
-    if (service.exportPictureToBMP(picture, canvas.snapshot(null, null))
-        && service.exportPictureToPNG(picture, canvas.snapshot(null, null))
-        && service.serializeToJson(picture)) {
+    if (service.exportPicture(picture, canvas.snapshot(null, null))) {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
       alert.setTitle("Export result");
       alert.setHeaderText(null);
@@ -146,7 +144,10 @@ public class MainScene {
     if (selectedFile == null || !selectedFile.isFile()) {
       return;
     }
-    LOGGER.debug("selectedFile is {}", selectedFile);
+
+    Picture picture = service.deserializeFromJson(selectedFile);
+    service.setCurPicture(picture);
+    Main.showEditScene();
   }
 
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {

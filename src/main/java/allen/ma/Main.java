@@ -1,5 +1,6 @@
 package allen.ma;
 
+import allen.ma.controller.EditScene;
 import allen.ma.controller.LoginScene;
 import allen.ma.controller.MainScene;
 import javafx.application.Application;
@@ -34,6 +35,13 @@ public class Main extends Application {
     MainScene scene = new MainScene();
     Scene mainScene = new Scene(scene.getRoot(), scene.getWidth(), scene.getHeight());
     stage.setScene(mainScene);
+    stage.centerOnScreen();
+  }
+
+  public static void showEditScene() {
+    EditScene scene = new EditScene();
+    Scene editScene = new Scene(scene.getRoot(), scene.getWidth(), scene.getHeight());
+    stage.setScene(editScene);
     stage.centerOnScreen();
   }
 

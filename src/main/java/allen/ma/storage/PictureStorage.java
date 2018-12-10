@@ -18,10 +18,10 @@ public interface PictureStorage {
   boolean serializeToJson(Picture picture);
   Picture deserializeFromJson(File file);
 
-  Picture loadBMPPicture(UUID id);
-  Picture loadPNGPicture(UUID id);
-  Picture loadBMPPictureFromFolder(File srcFile);
-  Picture loadPNGPictureFromFolder(File srcFile);
+  Image loadBMPPicture(Picture picture);
+  Image loadPNGPicture(Picture picture);
+  Image loadBytePicture(Picture picture);
+  Image loadBooleanPicture(Picture picture);
 
   Path getBMPPicturePath(Picture picture);
   Path getPNGPicturePath(Picture picture);

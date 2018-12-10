@@ -14,20 +14,10 @@ public interface PictureService {
 
   void setCurPicture(Picture picture);
 
-  void removePicture(Picture picture);
-
-  boolean exportPictureToBMP(Picture picture, Image pictureImage);
-  boolean exportPictureToPNG(Picture picture, Image pictureImage);
-  boolean exportPictureToByteArray(Picture picture, Image pictureImage);
-  boolean exportPictureToBooleanArary(Picture picture, Image pictureImage);
-  boolean exportPictureToTxtFile(Picture picture, Image pictureImage);
+  boolean exportPicture(Picture picture, Image pictureImage);
 
   boolean serializeToJson(Picture picture);
   Picture deserializeFromJson(File file);
 
-  Image loadPictureFromBMP(Picture picture);
-  Image loadPictureFromPNG(Picture picture);
-  Image loadPictureFromByteArray(Picture picture);
-  Image loadPictureFromBooleanArray(Picture picture);
-  Image loadPictureFromTxtFile(Picture picture);
+  Image loadPicture(Picture picture);
 }
