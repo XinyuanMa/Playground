@@ -34,6 +34,11 @@ public class PictureServiceImpl implements PictureService {
   }
 
   @Override
+  public void setCurPictureColor(Color color) {
+    curPicture.setColor(color);
+  }
+
+  @Override
   public Picture getCurrentPicture() {
     return curPicture;
   }

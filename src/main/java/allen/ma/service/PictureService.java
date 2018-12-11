@@ -14,6 +14,8 @@ public interface PictureService {
 
   void setCurPicture(Picture picture);
 
+  void setCurPictureColor(Color color);
+
   boolean exportPicture(Picture picture, Image pictureImage);
 
   boolean serializeToJson(Picture picture);

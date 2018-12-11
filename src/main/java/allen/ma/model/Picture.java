@@ -27,7 +27,7 @@ public class Picture {
     this.height = height;
   }
 
-  // I'll just leave it this way. Later I'll put all existing pictures together in a meta.json file (hopefully)
+  // I'll just leave it this way. Maybe later I'll put all existing pictures together in a meta.json file.
   public Picture(UUID id, Color color, Integer width, Integer height) {
     this.id = id;
     this.color = color;
@@ -49,5 +49,9 @@ public class Picture {
 
   public Color getColor() {
     return color;
+  }
+
+  public void setColor(Color color) {
+    this.color = color;
   }
 }

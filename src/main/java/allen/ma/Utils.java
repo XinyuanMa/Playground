@@ -23,6 +23,8 @@ public class Utils {
       for (int y = 0; y < height; y++) {
         Color color = reader.getColor(x, y);
         if (color.getRed() != 1 || color.getGreen() != 1 || color.getBlue() != 1) {
+          bimg.setRGB(x, y, java.awt.Color.BLACK.getRGB());
+        } else {
           bimg.setRGB(x, y, java.awt.Color.WHITE.getRGB());
         }
       }

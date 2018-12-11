@@ -4,12 +4,16 @@ import allen.ma.model.Picture;
 import allen.ma.service.PictureService;
 import allen.ma.service.PictureServiceImpl;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -85,6 +89,9 @@ public class EditScene {
     // button behaviors
     btnExport.setOnAction(e -> onBtnExportClicked(e, canvas));
     btnClear.setOnAction(e -> onBtnClearClicked(e, canvas));
+
+    // color picker behavior
+    colorPicker.setOnAction(this::onColorChanged);
   }
 
   private void onPressed(MouseEvent event, Canvas canvas) {
@@ -133,5 +140,27 @@ public class EditScene {
   private void onBtnClearClicked(ActionEvent event, Canvas canvas) {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+  }
+
+  private void onColorChanged(Event e) {
+    Color newColor = colorPicker.getValue();
+    service.setCurPictureColor(newColor);
+    refreshCanvas();
+  }
+
+  private void refreshCanvas() {
+    WritableImage writableImage = new WritableImage(width, height);
+    PixelReader reader = image.getPixelReader();
+    PixelWriter writer = writableImage.getPixelWriter();
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        Color color = reader.getColor(x, y);
+        if (color.getRed() != 1 || color.getBlue() != 1 || color.getGreen() != 1) {
+          writer.setColor(x, y, service.getCurrentPicture().getColor());
+        }
+      }
+    }
+
+    canvas.getGraphicsContext2D().drawImage(writableImage, 0, 0);
   }
 }
